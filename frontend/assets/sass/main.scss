@@ -1,0 +1,33 @@
+@import 'base/all';
+@import 'helpers/all';
+
+// Fonts
+@import '../fonts/icons/style.css';
+
+// Icons
+@import '../fonts/webfonts/style.css';
+
+// GLOBALS
+body {
+  font-family: $gotham-rounded-book;
+  font-weight: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $gotham-rounded-medium;
+  font-weight: normal;
+}
+
+p {
+  color: $color-font-gray;
+}
+
+input {
+  &:focus {
+    outline: none;
+  }
+}
+
+.margin-right-small {
+  margin-right: 10px;
+}

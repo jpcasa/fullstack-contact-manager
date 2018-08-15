@@ -1,0 +1,11 @@
+# dependencies
+frontend/node_modules
+
+# logs
+frontend/npm-debug.log
+
+# Nuxt build
+frontend/.nuxt
+
+# Nuxt generate
+frontend/dist

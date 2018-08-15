@@ -1,0 +1,66 @@
+{
+  "contacts": [
+    {
+        "id": 4,
+        "first_name": "Bob",
+        "last_name": "Bubbles",
+        "date_of_birth": "1281-12-12T11:11:00Z",
+        "addresses": [],
+        "phone_numbers": [],
+        "emails": [],
+        "created_at": "2018-08-13T21:31:54.834767Z"
+    },
+    {
+        "id": 5,
+        "first_name": "JP",
+        "last_name": "Casabianca",
+        "date_of_birth": "1991-12-18T23:00:00Z",
+        "addresses": [],
+        "phone_numbers": [],
+        "emails": [],
+        "created_at": "2018-08-13T21:33:58.202699Z"
+    },
+    {
+        "id": 6,
+        "first_name": "Sofi",
+        "last_name": "Casabianca",
+        "date_of_birth": "1993-12-18T23:00:00Z",
+        "addresses": [],
+        "phone_numbers": [],
+        "emails": [],
+        "created_at": "2018-08-13T22:01:08.732919Z"
+    },
+    {
+        "id": 7,
+        "first_name": "Gabriel",
+        "last_name": "Castillo",
+        "date_of_birth": "1881-11-11T11:11:00Z",
+        "addresses": [
+            2,
+            1,
+            3
+        ],
+        "phone_numbers": [],
+        "emails": [],
+        "created_at": "2018-08-14T14:27:30.054120Z"
+    },
+    {
+        "id": 8,
+        "first_name": "Nicolás",
+        "last_name": "Ortiz",
+        "date_of_birth": "1998-02-09T09:08:00Z",
+        "addresses": [
+            2,
+            1
+        ],
+        "phone_numbers": [
+            2,
+            1
+        ],
+        "emails": [
+            1
+        ],
+        "created_at": "2018-08-14T15:06:36.145576Z"
+    }
+  ]
+}
