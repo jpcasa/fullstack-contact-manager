@@ -35,5 +35,10 @@ module.exports = {
       }
     }
   },
-  css: ['@/assets/sass/main.scss']
+  css: ['@/assets/sass/main.scss'],
+  modules: [
+    ['nuxt-validate', {
+      lang: 'es',
+    }]
+  ]
 }

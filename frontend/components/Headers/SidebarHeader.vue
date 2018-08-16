@@ -1,22 +1,35 @@
 <template lang="html">
   <div id="main-header">
-    <div class="header-left">
+    <div class="header-left mobile">
       <i @click="showMenu = !showMenu" :class="toggleMenuIcon()" id="icon-menu" />
     </div>
     <div class="header-center">
-      <img src="img/logo.png" id="main-logo" alt="Logo Service Fusion">
+      <nuxt-link to="/"><img src="~/static/img/logo.png" id="main-logo" alt="Logo Service Fusion"></nuxt-link>
     </div>
-    <div class="header-right">
+    <div class="header-right mobile">
       <i class="icon-bell" />
       <i class="icon-user" />
     </div>
+    <div class="header-desktop">
+      <nav class="links">
+        <nuxt-link
+        v-for="(item, index) in menuItems"
+        :key="index"
+        :to="item.url"
+        v-show="item.action == 'push'">
+          <i v-show="item.icon != ''" :class="`icon-${item.icon}`"></i>{{ item.title }}
+        </nuxt-link>
+      </nav>
+    </div>
     <transition name="fade">
       <div v-show="showMenu" id="dropdown-menu">
-        <nuxt-link
+        <span @click="showMenu = !showMenu">
+          <nuxt-link
           v-for="(item, index) in menuItems"
           :key="index"
           :to="item.url"
           v-show="item.action == 'push'">{{ item.title }}</nuxt-link>
+        </span>
       </div>
     </transition>
   </div>
@@ -95,7 +108,7 @@ export default {
 #dropdown-menu {
   position: absolute;
   left: 0;
-  top: 75px;
+  top: 73px;
   background-color: $header-background;
   width: 100%;
   text-align: center;
@@ -122,5 +135,52 @@ export default {
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;
+}
+
+.header-desktop {
+  flex-direction: column;
+  display: none;
+  .links {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    a {
+      flex: 1;
+      padding: 15px 0;
+      color: $color-font-gray-heavy;
+      font-family: $gotham-rounded-medium;
+      padding-left: 30px;
+      text-decoration: none;
+      border-right: 5px solid #fff;
+      @include transition(all 0.3s ease-in-out);
+      &:hover {
+        color: $color-red;
+        border-right: 5px solid $color-red;
+      }
+      i {
+        position: relative;
+        top: 3px;
+        display: inline-block;
+        margin-right: 15px;
+      }
+    }
+    .nuxt-link-exact-active {
+      color: $color-red;
+      border-right: 5px solid $color-red;
+    }
+  }
+}
+
+@media (min-width: 992px) {
+  #main-header {
+    left: 0;
+    top: 0;
+    width: $sidebar-width;
+    height: 100%;
+    display: block;
+  }
+  .header-desktop {
+    display: flex;
+  }
 }
 </style>

@@ -1,6 +1,11 @@
 <template>
   <div class="container">
-    <section id="top">
+    <section class="top">
+      <span class="current-path">
+        <span>Dashboard / </span>
+        <nuxt-link class="active" to="/">Contacts</nuxt-link>
+        <span class="active"> /</span>
+      </span>
       <h2>Contacts</h2>
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     </section>
@@ -27,13 +32,4 @@ export default {
 </script>
 
 <style lang="scss">
-#top {
-  h2 {
-    margin-bottom: 0;
-  }
-  p {
-    font-size: 14px;
-  }
-  margin-bottom: 30px;
-}
 </style>

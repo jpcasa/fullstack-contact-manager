@@ -14,7 +14,8 @@ $gotham-rounded-medium: 'Gotham Rounded Medium', helvetica, sans-serif;
   HEADERS
 */
 $header-background: #fff;
-$margin-top-main-content: 100px;
+$margin-top-main-content: 75px;
+$margin-top-main-content-desktop: 3px;
 
 /*
   COLORS
@@ -32,3 +33,4 @@ $color-font-gray-dark: #1a1a1a;
   GLOBALS STYLES
 */
 $border-radius: 10px;
+$sidebar-width: 300px;

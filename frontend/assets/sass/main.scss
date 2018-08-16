@@ -31,3 +31,20 @@ input {
 .margin-right-small {
   margin-right: 10px;
 }
+
+.relative {
+  position: relative;
+}
+
+.desktop {
+  display: none;
+}
+
+@media (min-width: 992px) {
+  .mobile {
+    display: none;
+  }
+  .desktop {
+    display: block;
+  }
+}

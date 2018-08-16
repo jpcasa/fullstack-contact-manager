@@ -21,7 +21,7 @@
             </div>
           </div>
           <div class="contact-info">
-            <nuxt-link :to="`/contact/${contact.id}`">
+            <nuxt-link :to="`/contacts/${contact.id}`">
               {{ `${contact.first_name} ${contact.last_name}` }}
             </nuxt-link>
             <span>November 7, 1991</span>
