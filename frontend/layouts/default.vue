@@ -140,5 +140,8 @@
       margin-left: $sidebar-width;
       padding-top: $margin-top-main-content-desktop;
     }
+    #add-contact {
+      display: none;
+    }
   }
 </style>
