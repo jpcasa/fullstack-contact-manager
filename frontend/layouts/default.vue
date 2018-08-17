@@ -82,6 +82,7 @@
     .container {
       width: 90%;
       margin: auto;
+      max-width: 900px;
     }
   }
 

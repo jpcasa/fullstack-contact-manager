@@ -1,11 +1,15 @@
 <template lang="html">
   <section id="profile">
+    <div class="" style="display:block;margin-bottom:100px;">
+      <ProfileFull :profile="profile" />
+    </div>
     <ProfileSimple :profile="profile" />
   </section>
 </template>
 
 <script>
 import ProfileSimple from '~/components/Profile/ProfileSimple.vue'
+import ProfileFull from '~/components/Profile/ProfileFull.vue'
 import dataJSON from '~/api/data.json'
 
 export default {
@@ -19,7 +23,8 @@ export default {
     return /^\d+$/.test(params.id)
   },
   components: {
-    ProfileSimple
+    ProfileSimple,
+    ProfileFull
   },
   computed: {
     profile() {
