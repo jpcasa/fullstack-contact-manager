@@ -73,6 +73,7 @@
 <style lang="scss">
   @import '../assets/sass/helpers/_variables.scss';
   @import '../assets/sass/helpers/_mixins.scss';
+  @import '../assets/sass/helpers/_extensions.scss';
 
   #main-content {
     background-color: $color-gray-light;
@@ -80,9 +81,7 @@
     display: block;
     margin: 0;
     .container {
-      width: 90%;
-      margin: auto;
-      max-width: 900px;
+      @extend %container;
     }
   }
 

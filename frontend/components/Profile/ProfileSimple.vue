@@ -1,15 +1,21 @@
 <template lang="html">
   <div class="profile-simple">
-    <ProfileImg
-      :user_id="profile.user_id"
-      :img="profile.avatar"
-      :first_name="profile.first_name"
-      :last_name="profile.last_name"
-      username="" />
-    <div class="container">
-      <ProfileInfo :profile_info="profile_info"/>
-      <NavigationSimple :items="navItems" />
-      <ListWithAdd />
+    <div class="profile-simple-left">
+      <ProfileImg
+        :user_id="profile.user_id"
+        :img="profile.avatar"
+        :first_name="profile.first_name"
+        :last_name="profile.last_name"
+        username="" />
+      <div class="container">
+        <ProfileInfo :profile_info="profile_info"/>
+      </div>
+    </div>
+    <div class="profile-simple-right">
+      <div class="container">
+        <NavigationSimple :items="navItems" />
+        <ListWithAdd />
+      </div>
     </div>
   </div>
 </template>
@@ -84,6 +90,8 @@ export default {
 </script>
 
 <style lang="scss">
+@import '~/assets/sass/helpers/_extensions.scss';
+
  .profile-simple {
    #profile-info-container {
      margin: 15px 0;
@@ -91,6 +99,30 @@ export default {
    .container {
      .navigation-simple {
        margin: 25px 0;
+     }
+   }
+ }
+
+ @media (min-width: 768px) {
+   .profile-simple {
+     display: flex;
+     width: 90%;
+     margin: auto;
+     max-width: 900px;
+     padding: 30px 0;
+     .profile-simple-left,
+     .profile-simple-right {
+       flex: 1;
+     }
+     .profile-simple-left {
+       .container {
+         width: 100% !important;
+         margin-top: 0 !important;
+       }
+     }
+     .profile-img,
+     #profile-container {
+       @include border-radius($border-radius);
      }
    }
  }

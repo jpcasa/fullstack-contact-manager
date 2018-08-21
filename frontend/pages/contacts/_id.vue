@@ -1,8 +1,8 @@
 <template lang="html">
   <section id="profile">
-    <div class="" style="display:block;margin-bottom:100px;">
+    <!-- <div class="container" style="display:block;margin-bottom:100px;">
       <ProfileFull :profile="profile" />
-    </div>
+    </div> -->
     <ProfileSimple :profile="profile" />
   </section>
 </template>
