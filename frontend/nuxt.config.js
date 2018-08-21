@@ -1,3 +1,8 @@
+var path = require('path')
+var environment = {
+  API_URL: 'http://localhost:8080/'
+}
+
 module.exports = {
   /*
   ** Headers of the page
@@ -37,8 +42,13 @@ module.exports = {
   },
   css: ['@/assets/sass/main.scss'],
   modules: [
+    '@nuxtjs/axios',
     ['nuxt-validate', {
       lang: 'es',
     }]
-  ]
+  ],
+  axios: {
+    baseURL: environment.API_URL,
+    credentials: true
+  }
 }

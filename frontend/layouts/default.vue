@@ -13,6 +13,7 @@
 
     <!-- MAIN FOOTER -->
     <footer>
+      {{ info }}
       <SimpleFooter :message="footerMessage" />
     </footer>
 
@@ -28,10 +29,12 @@
 <script>
   import SidebarHeader from '~/components/Headers/SidebarHeader.vue'
   import SimpleFooter from '~/components/Footers/SimpleFooter.vue'
+  import axios from 'axios'
 
   export default {
     data() {
       return {
+        info: null,
         footerMessage: `
           Made with by
           <a href="http://jpcasabianca.com" target="_blank">
@@ -65,7 +68,14 @@
         } else {
           return false
         }
+      },
+      async fetchSomething() {
+        const data = await this.$axios.$get('contacts/')
+        this.info = data
       }
+    },
+    mounted () {
+      this.fetchSomething()
     }
   }
 </script>
