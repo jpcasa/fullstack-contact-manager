@@ -13,7 +13,6 @@
 
     <!-- MAIN FOOTER -->
     <footer>
-      {{ info }}
       <SimpleFooter :message="footerMessage" />
     </footer>
 
@@ -68,14 +67,13 @@
         } else {
           return false
         }
-      },
-      async fetchSomething() {
-        const data = await this.$axios.$get('contacts/')
-        this.info = data
       }
     },
-    mounted () {
-      this.fetchSomething()
+    created() {
+      this.$axios.setHeader('Content-Type', 'application/x-www-form-urlencoded', [
+        'post'
+      ])
+      this.$axios.setToken('b0471d267f2c23792190f147cd8f53a2ea47b9fe', 'Token')
     }
   }
 </script>

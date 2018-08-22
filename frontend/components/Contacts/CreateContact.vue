@@ -2,19 +2,35 @@
   <form
     class="form"
     :action="formData.redirect_url"
-    :method="formData.method">
+    :method="formData.method"
+    @submit.prevent="getFormValues">
+    <p class="error-message" v-if="error">{{ error }}</p>
     <label
       v-for="(field, index) in formData.fields"
       v-html="displayField(field)"
       :key="index"
       for=""></label>
-    <input type="submit" value="Create Contact" />
+    <input type="submit" :value="buttonText" />
   </form>
 </template>
 
 <script>
 export default {
-  props: ['formData'],
+  props: ['formData', 'action', 'edit'],
+  data() {
+    return {
+      error: null
+    }
+  },
+  computed: {
+    buttonText() {
+      if (this.action == 'create') {
+        return 'Create Contact'
+      } else {
+        return 'Update Contact'
+      }
+    }
+  },
   methods: {
     displayField(field) {
       // Checks if Field is required
@@ -34,19 +50,66 @@ export default {
       } else if (field.type=='text') {
         return `
           <p>${field.label} ${requiredTitle}</p>
-          <input type="text" name="${field.name}" placeholder="${field.placeholder}" ${required}>
+          <input type="text" name="${field.name}" placeholder="${field.placeholder}" value="${field.value}" ${required}>
         `
       } else if (field.type=='date') {
         return `
           <p>${field.label} ${requiredTitle}</p>
-          <input v-validate="'date_format:DD/MM/YYYY'" type="date" name="${field.name}" ${required}>
+          <input v-validate="'date_format:DD/MM/YYYY'" type="date" name="${field.name}" value="${field.value}" ${required}>
         `
       } else if (field.type=='textarea') {
         return `
           <p>${field.label} ${requiredTitle}</p>
-          <textarea name="${field.name}" rows="8" placeholder="${field.placeholder}"></textarea>
+          <textarea name="${field.name}" rows="8" placeholder="${field.placeholder}">${field.value}</textarea>
         `
       }
+    },
+    getFormValues (submitEvent) {
+      const first_name = submitEvent.target.elements.first_name.value
+      const last_name = submitEvent.target.elements.last_name.value
+      const date_of_birth = submitEvent.target.elements.date_of_birth.value + 'T11:11:00Z'
+      const avatar = submitEvent.target.elements.avatar.value
+      const notes = submitEvent.target.elements.notes.value
+      if (this.action == 'create') {
+        this.createProfile(first_name, last_name, date_of_birth, avatar, notes)
+      } else {
+        this.updateProfile(first_name, last_name, date_of_birth, avatar, notes)
+      }
+    },
+    async createProfile(first_name, last_name, date_of_birth, avatar, notes) {
+      await this.$axios.post('contacts/', {
+        first_name: first_name,
+        last_name: last_name,
+        date_of_birth: date_of_birth,
+        avatar: avatar,
+        notes: notes
+      })
+      .then(response => {
+        if (response.status == '201') {
+          this.$nuxt.$router.replace({ path: '/' })
+        }
+      })
+      .catch((error) => {
+        this.error = "Problem submitting New Contact. Try again later."
+      })
+    },
+    async updateProfile(first_name, last_name, date_of_birth, avatar, notes) {
+      await this.$axios.put(`contacts/${this.edit}/`, {
+        first_name: first_name,
+        last_name: last_name,
+        date_of_birth: date_of_birth,
+        avatar: avatar,
+        notes: notes
+      })
+      .then(response => {
+        if (response.status == '200') {
+          this.$nuxt.$router.replace({ path: `/contacts/${this.edit}/` })
+        }
+      })
+      .catch((error) => {
+        this.error = "Problem Editing the contact. Try again later."
+        console.error(error);
+      })
     }
   }
 }
@@ -99,5 +162,15 @@ export default {
         background-color: $color-red-dark;
       }
     }
+  }
+
+  .error-message {
+    display: block;
+    background-color: $color-red;
+    color: #fff;
+    font-size: 14px;
+    @include border-radius($border-radius);
+    padding: 8px 0;
+    text-align: center;
   }
 </style>

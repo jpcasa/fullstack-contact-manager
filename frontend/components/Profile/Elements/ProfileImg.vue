@@ -3,11 +3,15 @@
     <div id="profile-container">
       <div class="name">
         <p>{{ first_name }}</p>
-        <span id="username">@jpcasabianca</span>
+        <span id="username">@{{ username }}</span>
       </div>
       <div class="options">
-        <button id="edit-contact"><i class="icon-edit-2"></i></button>
-        <button id="delete-contact"><i class="icon-trash"></i></button>
+        <nuxt-link :to="updateUrl" id="edit-contact">
+          <i class="icon-edit-2"></i>
+        </nuxt-link>
+        <nuxt-link :to="deleteUrl" id="delete-contact">
+          <i class="icon-trash"></i>
+        </nuxt-link>
       </div>
     </div>
   </div>
@@ -16,12 +20,20 @@
 <script>
 export default {
   props: [
-    'user_id',
+    'contact_id',
     'img',
     'first_name',
     'last_name',
     'username'
-  ]
+  ],
+  computed: {
+    updateUrl() {
+      return `/contacts/${this.contact_id}/update/`
+    },
+    deleteUrl() {
+      return `/contacts/${this.contact_id}/delete/`
+    },
+  }
 }
 </script>
 
@@ -62,8 +74,9 @@ export default {
         text-align: right;
         margin-bottom: 20px;
         margin-right: 5%;
-        button {
+        a {
           @extend %button-circle;
+          text-decoration: none;
         }
         #edit-contact {
           @extend %button-white;

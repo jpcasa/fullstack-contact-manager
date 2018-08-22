@@ -30,6 +30,9 @@ class EmailSerializer(serializers.ModelSerializer):
 
 class ContactSerializer(serializers.ModelSerializer):
     """Serializer that maps the Contact Instance to JSON."""
+    addresses = AddressSerializer(many=True, read_only=True)
+    phone_numbers = PhoneNumberSerializer(many=True, read_only=True)
+    emails = EmailSerializer(many=True, read_only=True)
 
     class Meta:
         model = models.Contact
@@ -41,6 +44,8 @@ class ContactSerializer(serializers.ModelSerializer):
             'addresses',
             'phone_numbers',
             'emails',
+            'avatar',
+            'notes',
             'created_at',
         )
         read_only_fields = ('created_at',)

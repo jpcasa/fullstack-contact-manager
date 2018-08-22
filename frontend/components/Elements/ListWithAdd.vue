@@ -2,19 +2,19 @@
   <section class="list-with-add">
     <div class="add">
       <div class="input">
-        <input type="text" name="address" placeholder="Add Address">
+        <input type="text" name="address" :placeholder="'Add ' + title">
       </div>
       <div class="submit">
-        <button type="submit">Create Address</button>
+        <button type="submit"><i :class="'icon-' + icon"></i> +</button>
       </div>
     </div>
     <div class="list">
-      <div class="list-row" v-for="i in (0, 6)" :key="i">
+      <div class="list-row" v-for="(item, index) in items" :key="index">
         <div class="identifier">
-          <i class="icon-map"></i>
+          <i :class="'icon-' + icon"></i>
         </div>
         <div class="name">
-          <p>Calle 92 #13-68 Apto 303</p>
+          <p>{{ item[value] }}</p>
         </div>
         <div class="options">
           <i class="icon-edit-2"></i>
@@ -27,6 +27,7 @@
 
 <script>
 export default {
+  props: ['icon', 'items', 'value', 'title']
 }
 </script>
 
@@ -38,7 +39,7 @@ export default {
     .add {
       display: flex;
       align-items: center;
-      margin-bottom: 30px;
+      margin-bottom: 15px;
       .input {
         flex: 3;
         margin-right: 20px;
@@ -60,12 +61,15 @@ export default {
           border: none;
           height: 40px;
           width: 100%;
-          font-size: 12px;
+          font-size: 16px;
           cursor: pointer;
           font-family: $gotham-rounded-medium;
           @include border-radius($border-radius);
           &:hover {
             background-color: $color-red-dark;
+          }
+          i {
+            font-size: 16px;
           }
         }
       }

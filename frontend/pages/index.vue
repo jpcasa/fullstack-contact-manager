@@ -19,7 +19,7 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     </section>
     <section id="contacts">
-      <ContactManager :contacts="contacts" />
+      <ContactManager :contacts="contactData" />
     </section>
   </div>
 </template>
@@ -31,11 +31,21 @@ import dataJSON from '~/api/data.json'
 export default {
   data() {
     return {
-      contacts: dataJSON.contacts
+      contacts: dataJSON.contacts,
+      contactData: {}
     }
   },
   components: {
     ContactManager
+  },
+  methods: {
+    async fetchContacts() {
+      const data = await this.$axios.$get('contacts/?format=json')
+      this.contactData = data
+    }
+  },
+  created () {
+    this.fetchContacts()
   }
 }
 </script>

@@ -75,11 +75,24 @@ class Contact(models.Model):
     addresses = models.ManyToManyField(Address, blank=True)
     phone_numbers = models.ManyToManyField(PhoneNumber, blank=True)
     emails = models.ManyToManyField(Email, blank=True)
+    avatar = models.CharField(
+        null=True,
+        max_length=255,
+        default='https://d2787ndpv5cwhz.cloudfront.net/a51b5f179788e296483d6f5dee2e3b1c254becb5/300x300.jpg'
+    )
+    notes = models.CharField(
+        null=True,
+        max_length=255,
+        default=''
+    )
     created_at = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
         """Readable format for the Model Instance."""
         return '{} {}'.format(self.first_name, self.last_name)
+
+    class Meta:
+        ordering = ('-created_at',)
 
 
 @receiver(post_save, sender=User)

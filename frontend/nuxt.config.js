@@ -1,6 +1,6 @@
 var path = require('path')
 var environment = {
-  API_URL: 'http://localhost:8080/'
+  API_URL: 'http://127.0.0.1:8000'
 }
 
 module.exports = {
@@ -48,7 +48,6 @@ module.exports = {
     }]
   ],
   axios: {
-    baseURL: environment.API_URL,
-    credentials: true
+    baseURL: environment.API_URL
   }
 }

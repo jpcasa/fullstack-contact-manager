@@ -6,7 +6,7 @@
     </label>
     <div class="info-section">
       <div class="info-section-left">
-        <p>{{ contacts.length }} Contacts</p>
+        <p>Contacts</p>
       </div>
       <div class="info-section-right">
         <button><i class="icon-filter"></i>Filter</button>

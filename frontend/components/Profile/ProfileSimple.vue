@@ -2,19 +2,38 @@
   <div class="profile-simple">
     <div class="profile-simple-left">
       <ProfileImg
-        :user_id="profile.user_id"
+        :contact_id="profile.id"
         :img="profile.avatar"
         :first_name="profile.first_name"
         :last_name="profile.last_name"
-        username="" />
+        username="username" />
       <div class="container">
         <ProfileInfo :profile_info="profile_info"/>
       </div>
     </div>
     <div class="profile-simple-right">
       <div class="container">
-        <NavigationSimple :items="navItems" />
-        <ListWithAdd />
+        <p class="subtitle">Addresses</p>
+        <ListWithAdd
+          title="Address"
+          icon="map"
+          value="title"
+          url="/addresses/"
+          :items="profile.addresses" />
+        <p class="subtitle">Phone Numbers</p>
+        <ListWithAdd
+          title="Phone Number"
+          icon="phone"
+          value="number"
+          url="/phone_numbers/"
+          :items="profile.phone_numbers" />
+        <p class="subtitle">Addresses</p>
+        <ListWithAdd
+          title="Email"
+          icon="mail"
+          value="address"
+          url="/emails/"
+          :items="profile.emails" />
       </div>
     </div>
   </div>
@@ -30,6 +49,7 @@ export default {
   props: ['profile'],
   data() {
     return {
+      items: [],
       navItems: [
         {
           "title": "Adresses",
@@ -85,6 +105,14 @@ export default {
         }
       ]
     }
+  },
+  methods: {
+    chooseItems(show) {
+      this.profItems = 'a'
+    }
+  },
+  mounted() {
+    this.items = this.profile.addresses
   }
 }
 </script>
@@ -100,6 +128,32 @@ export default {
      .navigation-simple {
        margin: 25px 0;
      }
+   }
+ }
+
+ .subtitle {
+   color: $color-red;
+   font-family: $gotham-rounded-medium;
+   font-size: 15px;
+ }
+
+ .navigation-simple {
+   display: flex;
+   button {
+     flex: 1;
+     border: none;
+     padding: 0;
+     font-size: 14px;
+     background: none;
+     cursor: pointer;
+     font-family: $gotham-rounded-medium;
+     color: $color-font-gray-dark;
+     &:hover {
+       color: $color-red;
+     }
+   }
+   .active {
+     color: $color-red;
    }
  }
 
@@ -119,6 +173,10 @@ export default {
          width: 100% !important;
          margin-top: 0 !important;
        }
+     }
+     .profile-simple-right {
+       max-height: 550px;
+       overflow-y: scroll;
      }
      .profile-img,
      #profile-container {

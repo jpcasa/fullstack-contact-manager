@@ -12,7 +12,7 @@
       <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
     </section>
     <section id="create-contact-container">
-      <CreateContact :formData="formData" />
+      <CreateContact :formData="formData" action="create" edit="" />
     </section>
   </div>
 </template>
@@ -24,21 +24,15 @@ export default {
   data() {
     return {
       formData: {
-        "redirect_url": "/contacts",
+        "redirect_url": "/",
         "method": "POST",
         "fields": [
-          {
-            "label": "Avatar",
-            "type": "file",
-            "name": "avatar",
-            "placeholder": "Choose Avatar",
-            "required": false
-          },
           {
             "label": "First Name",
             "type": "text",
             "name": "first_name",
             "placeholder": "Enter First Name Here...",
+            "value": "",
             "required": true
           },
           {
@@ -46,6 +40,7 @@ export default {
             "type": "text",
             "name": "last_name",
             "placeholder": "Enter Last Name Here...",
+            "value": "",
             "required": true
           },
           {
@@ -53,13 +48,23 @@ export default {
             "type": "date",
             "name": "date_of_birth",
             "placeholder": "__ / __ / ____",
+            "value": "",
             "required": true
+          },
+          {
+            "label": "Avatar",
+            "type": "text",
+            "name": "avatar",
+            "placeholder": "Enter Image Absolute URL",
+            "value": "",
+            "required": false
           },
           {
             "label": "Notes",
             "type": "textarea",
             "name": "notes",
             "placeholder": "Enter optional notes...",
+            "value": "",
             "required": false
           }
         ]
