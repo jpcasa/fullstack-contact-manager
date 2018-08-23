@@ -9,3 +9,5 @@ frontend/.nuxt
 
 # Nuxt generate
 frontend/dist
+
+env
