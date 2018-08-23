@@ -3,13 +3,12 @@ from rest_framework import serializers
 
 from . import models
 
-
 class AddressSerializer(serializers.ModelSerializer):
     """Serializer that maps the Address Instance to JSON."""
 
     class Meta:
         model = models.Address
-        fields = ('id', 'title')
+        fields = ('id', 'title', 'owner')
 
 
 class PhoneNumberSerializer(serializers.ModelSerializer):
@@ -17,7 +16,7 @@ class PhoneNumberSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.PhoneNumber
-        fields = ('id', 'number')
+        fields = ('id', 'number', 'owner')
 
 
 class EmailSerializer(serializers.ModelSerializer):
@@ -25,7 +24,7 @@ class EmailSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = models.Email
-        fields = ('id', 'address')
+        fields = ('id', 'address', 'owner')
 
 
 class ContactSerializer(serializers.ModelSerializer):

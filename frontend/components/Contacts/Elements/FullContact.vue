@@ -17,7 +17,7 @@
       <tbody>
         <tr v-for="(contact, index) in contacts" :key="index" class="contacts-table-row">
           <td><div class="img-circle">
-            <img :src="`img/user${contact.id}.jpg`" :alt="contact.first_name">
+            <img :src="contact.avatar" :alt="contact.first_name">
           </div></td>
           <td class="larger"><span class="normal-title">{{ contact.first_name }}</span></td>
           <td class="larger"><span class="normal-title">{{ contact.last_name }}</span></td>

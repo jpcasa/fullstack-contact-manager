@@ -15,6 +15,8 @@
       <div class="container">
         <p class="subtitle">Addresses</p>
         <ListWithAdd
+          :owner="profile.id"
+          type="address"
           title="Address"
           icon="map"
           value="title"
@@ -22,6 +24,8 @@
           :items="profile.addresses" />
         <p class="subtitle">Phone Numbers</p>
         <ListWithAdd
+          :owner="profile.id"
+          type="phone"
           title="Phone Number"
           icon="phone"
           value="number"
@@ -29,6 +33,8 @@
           :items="profile.phone_numbers" />
         <p class="subtitle">Addresses</p>
         <ListWithAdd
+          :owner="profile.id"
+          type="email"
           title="Email"
           icon="mail"
           value="address"

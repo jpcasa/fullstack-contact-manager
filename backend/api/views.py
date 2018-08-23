@@ -18,7 +18,12 @@ class AddressView(generics.ListCreateAPIView):
         return models.Address.objects.filter(owner=self.request.user)
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        serializer.owner = self.request.user
+        serializer.save()
+        last_address = models.Address.objects.latest('id')
+        contact_id = self.request.data.get('contact_id', None)
+        contact = models.Contact.objects.get(id=contact_id)
+        contact.addresses.add(last_address)
 
 
 class AddressDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -38,6 +43,10 @@ class PhoneNumberView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+        last_phone = models.PhoneNumber.objects.latest('id')
+        contact_id = self.request.data.get('contact_id', None)
+        contact = models.Contact.objects.get(id=contact_id)
+        contact.phone_numbers.add(last_phone)
 
 
 class PhoneNumberDetailView(generics.RetrieveUpdateDestroyAPIView):
@@ -57,6 +66,10 @@ class EmailView(generics.ListCreateAPIView):
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
+        last_email = models.Email.objects.latest('id')
+        contact_id = self.request.data.get('contact_id', None)
+        contact = models.Contact.objects.get(id=contact_id)
+        contact.emails.add(last_email)
 
 
 class EmailDetailView(generics.RetrieveUpdateDestroyAPIView):
