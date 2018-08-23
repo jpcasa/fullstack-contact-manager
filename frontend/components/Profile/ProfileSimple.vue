@@ -31,7 +31,7 @@
           value="number"
           url="/phone_numbers/"
           :items="profile.phone_numbers" />
-        <p class="subtitle">Addresses</p>
+        <p class="subtitle">Emails</p>
         <ListWithAdd
           :owner="profile.id"
           type="email"
@@ -181,7 +181,7 @@ export default {
        }
      }
      .profile-simple-right {
-       max-height: 550px;
+       max-height: 600px;
        overflow-y: scroll;
      }
      .profile-img,

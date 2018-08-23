@@ -9,10 +9,10 @@
     <!-- MAIN CONTENT -->
     <main id="main-content">
       <nuxt/>
+      <!-- MAIN FOOTER -->
     </main>
 
-    <!-- MAIN FOOTER -->
-    <footer>
+    <footer id="main-footer">
       <SimpleFooter :message="footerMessage" />
     </footer>
 

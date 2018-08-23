@@ -33,4 +33,12 @@ export default {
       }
     }
   }
+
+  @media (min-width: 992px) {
+    #simple-footer {
+      display: flex;
+      margin-left: $sidebar-width;
+      justify-content: center;
+    }
+  }
 </style>
