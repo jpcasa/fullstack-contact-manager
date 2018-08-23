@@ -10,75 +10,75 @@
         <span class="active" to="/"> {{ profile.first_name }}</span>
         <span class="active"> /</span>
       </span>
-      <h2>Update: {{ profile.first_name + ' ' + profile.last_name }}</h2>
+      <h2>Update: {{ profile.first_name + " " + profile.last_name }}</h2>
     </section>
     <section id="create-contact-container">
-      <CreateContact :formData="formData" action="edit" :edit="profile.id" />
+      <CreateUpdateContact :formData="formData" action="edit" :edit="profile.id" />
     </section>
   </div>
 </template>
 
 <script>
-import CreateContact from '~/components/Contacts/CreateContact.vue'
+import CreateUpdateContact from "~/components/Contacts/CreateUpdateContact.vue"
 
 export default {
   data() {
-    return {
+    return {
       profile: {}
     }
   },
   computed: {
     formData() {
       return {
-        "redirect_url": "/",
-        "method": "POST",
-        "fields": [
+        redirect_url: "/",
+        method: "POST",
+        fields: [
           {
-            "label": "First Name",
-            "type": "text",
-            "name": "first_name",
-            "placeholder": "Enter First Name Here...",
-            "value": this.profile.first_name,
-            "required": true
+            label: "First Name",
+            type: "text",
+            name: "first_name",
+            placeholder: "Enter First Name Here...",
+            value: this.profile.first_name,
+            required: true
           },
           {
-            "label": "Last Name",
-            "type": "text",
-            "name": "last_name",
-            "placeholder": "Enter Last Name Here...",
-            "value": this.profile.last_name,
-            "required": true
+            label: "Last Name",
+            type: "text",
+            name: "last_name",
+            placeholder: "Enter Last Name Here...",
+            value: this.profile.last_name,
+            required: true
           },
           {
-            "label": "Date of Birth",
-            "type": "date",
-            "name": "date_of_birth",
-            "placeholder": "__ / __ / ____",
-            "value": this.profile.date_of_birth,
-            "required": true
+            label: "Date of Birth",
+            type: "date",
+            name: "date_of_birth",
+            placeholder: "__ / __ / ____",
+            value: this.profile.date_of_birth,
+            required: true
           },
           {
-            "label": "Avatar",
-            "type": "text",
-            "name": "avatar",
-            "placeholder": "Enter Image Absolute URL",
-            "value": this.profile.avatar,
-            "required": false
+            label: "Avatar",
+            type: "text",
+            name: "avatar",
+            placeholder: "Enter Image Absolute URL",
+            value: this.profile.avatar,
+            required: false
           },
           {
-            "label": "Notes",
-            "type": "textarea",
-            "name": "notes",
-            "placeholder": "Enter optional notes...",
-            "value": this.profile.notes,
-            "required": false
+            label: "Notes",
+            type: "textarea",
+            name: "notes",
+            placeholder: "Enter optional notes...",
+            value: this.profile.notes,
+            required: false
           }
         ]
       }
     }
   },
   components: {
-    CreateContact
+    CreateUpdateContact
   },
   methods: {
     async fetchProfile() {

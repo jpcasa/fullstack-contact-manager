@@ -37,7 +37,7 @@
 
 <script>
 export default {
-  props: ['menuItems'],
+  props: ["menuItems"],
   data() {
     return {
       showMenu: false
@@ -46,9 +46,9 @@ export default {
   methods: {
     toggleMenuIcon() {
       if (!this.showMenu) {
-        return 'icon-menu'
+        return "icon-menu"
       } else {
-        return 'icon-x'
+        return "icon-x"
       }
     }
   }
@@ -56,8 +56,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '../../assets/sass/helpers/_variables.scss';
-@import '../../assets/sass/helpers/_mixins.scss';
+@import "../../assets/sass/helpers/_variables.scss";
+@import "../../assets/sass/helpers/_mixins.scss";
 
 #main-header {
   z-index: 999;
@@ -130,8 +130,9 @@ export default {
   }
 }
 
-.fade-enter-active, .fade-leave-active {
-  transition: opacity .3s;
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s;
 }
 .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
   opacity: 0;

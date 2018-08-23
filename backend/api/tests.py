@@ -95,7 +95,6 @@ class ModelsTestCase(TestCase):
         self.assertEqual(new_address, self.address.title)
 
 
-
     def test_model_can_update_email(self):
         """Test that an email updates successfully"""
         new_address = "hi@email.com"
@@ -104,7 +103,6 @@ class ModelsTestCase(TestCase):
         self.email.address = new_address
         self.email.save()
         self.assertEqual(new_address, self.email.address)
-
 
 
     def test_model_can_update_phone(self):

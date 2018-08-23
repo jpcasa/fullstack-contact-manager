@@ -1,9 +1,9 @@
 <template lang="html">
-  <Confirmation message="Are you sure you want to delete" :title="profile.first_name" :cancel_url="cancelUrl" />
+  <Confirmation :contact_id="$route.params.id" message="Are you sure you want to delete" :title="profile.first_name" :cancel_url="cancelUrl" />
 </template>
 
 <script>
-import Confirmation from '~/components/Elements/Confirmation.vue';
+import Confirmation from "~/components/Elements/Confirmation.vue"
 
 export default {
   data() {
@@ -13,7 +13,7 @@ export default {
   },
   computed: {
     cancelUrl() {
-      return '/contacts/' + this.profile.id
+      return "/contacts/" + this.profile.id
     }
   },
   components: {

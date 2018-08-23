@@ -34,18 +34,29 @@
 </template>
 
 <script>
-import IconWithNotif from '~/components/Elements/IconWithNotif.vue'
+import IconWithNotif from "~/components/Elements/IconWithNotif.vue"
 
 export default {
-  props: ['contacts'],
+  props: ["contacts"],
   components: {
     IconWithNotif
   },
   methods: {
     nice_date(date_to_improve) {
-      const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-      ];
+      const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ]
       const date = new Date(date_to_improve)
       const monthName = monthNames[date.getMonth()]
       return `${monthName} ${date.getDay()}, ${date.getFullYear()}`
@@ -55,64 +66,65 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '~/assets/sass/helpers/_variables.scss';
-  @import '~/assets/sass/helpers/_mixins.scss';
+@import "~/assets/sass/helpers/_variables.scss";
+@import "~/assets/sass/helpers/_mixins.scss";
 
-  .contacts-expanded {
-    margin-top: 25px;
-    table {
-      display: block;
+.contacts-expanded {
+  margin-top: 25px;
+  table {
+    display: block;
+    width: 100%;
+    tbody,
+    thead {
       width: 100%;
-      tbody, thead {
+      display: flex;
+      flex-direction: column;
+      tr {
+        flex: 1;
         width: 100%;
         display: flex;
-        flex-direction: column;
-        tr {
+        align-items: center;
+        th {
           flex: 1;
-          width: 100%;
-          display: flex;
-          align-items: center;
-          th {
-            flex: 1;
-            font-size: 12px;
-            color: $color-font-gray-dark;
-            text-align: center;
-          }
-          td {
-            flex: 1;
-            text-align: center;
-          }
-          .larger {
-            flex: 2;
-          }
-        }
-      }
-      tr.contacts-table-row {
-        background-color: #fff;
-        margin-bottom: 10px;
-        padding: 5px 0;
-        @include border-radius($border-radius);
-        .normal-title {
           font-size: 12px;
-          color: $color-font-gray-heavy;
+          color: $color-font-gray-dark;
+          text-align: center;
         }
-        .img-circle {
-          position: relative;
-          top: 3px;
+        td {
+          flex: 1;
+          text-align: center;
         }
-        a {
-          font-size: 13px;
-          text-decoration: none;
-          color: $color-font-gray-heavy;
-          &:hover {
-            color: $color-red;
-            text-decoration: underline;
-          }
+        .larger {
+          flex: 2;
         }
-      }
-      tr.contacts-table-headline {
-        margin-bottom: 10px;
       }
     }
+    tr.contacts-table-row {
+      background-color: #fff;
+      margin-bottom: 10px;
+      padding: 5px 0;
+      @include border-radius($border-radius);
+      .normal-title {
+        font-size: 12px;
+        color: $color-font-gray-heavy;
+      }
+      .img-circle {
+        position: relative;
+        top: 3px;
+      }
+      a {
+        font-size: 13px;
+        text-decoration: none;
+        color: $color-font-gray-heavy;
+        &:hover {
+          color: $color-red;
+          text-decoration: underline;
+        }
+      }
+    }
+    tr.contacts-table-headline {
+      margin-bottom: 10px;
+    }
   }
+}
 </style>

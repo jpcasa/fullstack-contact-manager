@@ -9,7 +9,7 @@
           <span>Dashboard / </span>
           <nuxt-link to="/">Contacts</nuxt-link>
           <span> / </span>
-          <span class="active" to="/"> {{ profile.first_name + ' ' + profile.last_name }}</span>
+          <span class="active" to="/"> {{ profile.first_name + " " + profile.last_name }}</span>
           <span class="active"> /</span>
         </span>
       </div>
@@ -19,8 +19,8 @@
 </template>
 
 <script>
-import ProfileSimple from '~/components/Profile/ProfileSimple.vue'
-import dataJSON from '~/api/data.json'
+import ProfileSimple from "~/components/Profile/ProfileSimple.vue"
+import dataJSON from "~/api/data.json"
 
 export default {
   data() {
@@ -29,7 +29,7 @@ export default {
       profile: {}
     }
   },
-  validate ({ params }) {
+  validate({ params }) {
     // Must be a number
     return /^\d+$/.test(params.id)
   },
@@ -51,15 +51,15 @@ export default {
 </script>
 
 <style lang="scss">
-  @import '~/assets/sass/helpers/_variables.scss';
-  @import '~/assets/sass/helpers/_extensions.scss';
+@import "~/assets/sass/helpers/_variables.scss";
+@import "~/assets/sass/helpers/_extensions.scss";
 
-  #profile {
-    padding-bottom: 50px;
-    width: 100%;
-  }
+#profile {
+  padding-bottom: 50px;
+  width: 100%;
+}
 
-  .top {
-    margin-bottom: 0;
-  }
+.top {
+  margin-bottom: 0;
+}
 </style>

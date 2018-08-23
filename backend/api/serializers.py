@@ -4,7 +4,7 @@ from rest_framework import serializers
 from . import models
 
 class AddressSerializer(serializers.ModelSerializer):
-    """Serializer that maps the Address Instance to JSON."""
+    """Serializer that maps the Address Model to JSON."""
 
     class Meta:
         model = models.Address
@@ -12,7 +12,7 @@ class AddressSerializer(serializers.ModelSerializer):
 
 
 class PhoneNumberSerializer(serializers.ModelSerializer):
-    """Serializer that maps the PhoneNumber Instance to JSON."""
+    """Serializer that maps the PhoneNumber Model to JSON."""
 
     class Meta:
         model = models.PhoneNumber
@@ -20,7 +20,7 @@ class PhoneNumberSerializer(serializers.ModelSerializer):
 
 
 class EmailSerializer(serializers.ModelSerializer):
-    """Serializer that maps the Email Instance to JSON."""
+    """Serializer that maps the Email Model to JSON."""
 
     class Meta:
         model = models.Email
@@ -28,7 +28,7 @@ class EmailSerializer(serializers.ModelSerializer):
 
 
 class ContactSerializer(serializers.ModelSerializer):
-    """Serializer that maps the Contact Instance to JSON."""
+    """Serializer that maps the Contact Model to JSON."""
     addresses = AddressSerializer(many=True, read_only=True)
     phone_numbers = PhoneNumberSerializer(many=True, read_only=True)
     emails = EmailSerializer(many=True, read_only=True)

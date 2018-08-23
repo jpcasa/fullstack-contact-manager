@@ -7,15 +7,12 @@
 
 <script>
 export default {
-  props: [
-    'numOfNotif',
-    'icon'
-  ]
+  props: ["numOfNotif", "icon"]
 }
 </script>
 
 <style lang="scss" scoped>
-@import '~/assets/sass/helpers/_variables.scss';
+@import "~/assets/sass/helpers/_variables.scss";
 
 i {
   font-size: 14px;

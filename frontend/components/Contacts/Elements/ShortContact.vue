@@ -3,7 +3,7 @@
     <div v-for="(contact, index) in contacts" :key="index" class="contact-row">
       <div class="contact-img">
         <div class="img-circle">
-          <img :src="`img/user${contact.id}.jpg`" :alt="contact.first_name">
+          <img :src="contact.avatar" :alt="contact.first_name">
         </div>
       </div>
       <div class="contact-info">
@@ -22,10 +22,10 @@
 </template>
 
 <script>
-import IconWithNotif from '~/components/Elements/IconWithNotif.vue'
+import IconWithNotif from "~/components/Elements/IconWithNotif.vue"
 
 export default {
-  props: ['contacts'],
+  props: ["contacts"],
   components: {
     IconWithNotif
   }
@@ -33,8 +33,8 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~/assets/sass/helpers/_variables.scss';
-@import '~/assets/sass/helpers/_mixins.scss';
+@import "~/assets/sass/helpers/_variables.scss";
+@import "~/assets/sass/helpers/_mixins.scss";
 
 .contacts {
   .contact-row {
@@ -50,7 +50,8 @@ export default {
     }
     .contact-info {
       flex: 7;
-      a, span {
+      a,
+      span {
         display: block;
         font-size: 13px;
         margin: 0;

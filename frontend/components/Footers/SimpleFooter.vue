@@ -6,39 +6,39 @@
 
 <script>
 export default {
-  props: ['message']
+  props: ["message"]
 }
 </script>
 
 <style lang="scss">
-  @import '~/assets/sass/helpers/_variables.scss';
+@import "~/assets/sass/helpers/_variables.scss";
 
-  #simple-footer {
-    display: block;
-    background-color: $color-red;
-    text-align: center;
-    padding: 25px;
-    p {
-      color: #fff;
-      font-size: 14px;
-      padding: 0;
-      margin: 0;
-      a {
-        color: $color-red-dark;
-        text-decoration: none;
-        font-family: $gotham-rounded-medium;
-        &:hover {
-          text-decoration: underline;
-        }
+#simple-footer {
+  display: block;
+  background-color: $color-red;
+  text-align: center;
+  padding: 25px;
+  p {
+    color: #fff;
+    font-size: 14px;
+    padding: 0;
+    margin: 0;
+    a {
+      color: $color-red-dark;
+      text-decoration: none;
+      font-family: $gotham-rounded-medium;
+      &:hover {
+        text-decoration: underline;
       }
     }
   }
+}
 
-  @media (min-width: 992px) {
-    #simple-footer {
-      display: flex;
-      margin-left: $sidebar-width;
-      justify-content: center;
-    }
+@media (min-width: 992px) {
+  #simple-footer {
+    display: flex;
+    margin-left: $sidebar-width;
+    justify-content: center;
   }
+}
 </style>

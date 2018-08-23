@@ -25,8 +25,8 @@
 </template>
 
 <script>
-import ContactManager from '~/components/Contacts/ContactManager.vue'
-import dataJSON from '~/api/data.json'
+import ContactManager from "~/components/Contacts/ContactManager.vue"
+import dataJSON from "~/api/data.json"
 
 export default {
   data() {
@@ -40,40 +40,40 @@ export default {
   },
   methods: {
     async fetchContacts() {
-      const data = await this.$axios.$get('contacts/?format=json')
+      const data = await this.$axios.$get("contacts/?format=json")
       this.contactData = data
     }
   },
-  created () {
+  created() {
     this.fetchContacts()
   }
 }
 </script>
 
 <style lang="scss">
-  @import '~/assets/sass/helpers/_variables.scss';
+@import "~/assets/sass/helpers/_variables.scss";
 
-  .top-bar {
-    display: flex;
-    .top-bar-left {
-      flex: 1;
+.top-bar {
+  display: flex;
+  .top-bar-left {
+    flex: 1;
+  }
+  .top-bar-right {
+    flex: 1;
+    text-align: right;
+    color: $color-font-gray-heavy;
+    i {
+      display: inline-block;
+      margin-right: 6px;
+      position: relative;
+      top: 3px;
+      font-size: 18px;
+      color: $color-font-gray-dark;
     }
-    .top-bar-right {
-      flex: 1;
-      text-align: right;
-      color: $color-font-gray-heavy;
-      i {
-        display: inline-block;
-        margin-right: 6px;
-        position: relative;
-        top: 3px;
-        font-size: 18px;
-        color: $color-font-gray-dark;
-      }
-      span {
-        font-size: 14px;
-        display: inline-block;
-      }
+    span {
+      font-size: 14px;
+      display: inline-block;
     }
   }
+}
 </style>

@@ -3,7 +3,7 @@
     <div class="confirm">
       <p>{{ message }}</p>
       <h1>{{ title }}</h1>
-      <button class="delete">Delete</button>
+      <button @click="deleteContactApi(contact_id)" class="delete">Delete</button>
       <nuxt-link :to="cancel_url" class="cancel">Cancel</nuxt-link>
     </div>
   </div>
@@ -11,29 +11,41 @@
 
 <script>
 export default {
-  props: ['message', 'title', 'cancel_url']
+  props: ["contact_id", "message", "title", "cancel_url"],
+  methods: {
+    async deleteContactApi(id) {
+      await this.$axios.delete(`contacts/${id}/`).then(response => {
+        if (response.status == "204") {
+          this.$nuxt.$router.replace({ path: "/" })
+        }
+      })
+    }
+  }
 }
 </script>
 
 <style lang="scss">
-@import '~/assets/sass/helpers/_extensions.scss';
+@import "~/assets/sass/helpers/_extensions.scss";
 
 .confirmation {
   display: flex;
-  min-height: 550px;
+  min-height: 650px;
   align-items: center;
   justify-content: center;
+  width: 100%;
   .confirm {
     text-align: center;
     margin-bottom: 20px;
-    p, h1 {
+    p,
+    h1 {
       margin: 0;
       padding: 0;
     }
     h1 {
       margin: 10px 0 20px 0;
     }
-    button, a {
+    button,
+    a {
       @extend %button;
       text-decoration: none;
     }
@@ -44,6 +56,12 @@ export default {
     .cancel {
       @extend %button-white;
     }
+  }
+}
+
+@media (min-width: 992px) {
+  .confirmation {
+    min-height: 750px;
   }
 }
 </style>

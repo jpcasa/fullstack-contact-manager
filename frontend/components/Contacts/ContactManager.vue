@@ -22,11 +22,11 @@
 </template>
 
 <script>
-import ShortContact from '~/components/Contacts/Elements/ShortContact.vue';
-import FullContact from '~/components/Contacts/Elements/FullContact.vue';
+import ShortContact from "~/components/Contacts/Elements/ShortContact.vue"
+import FullContact from "~/components/Contacts/Elements/FullContact.vue"
 
 export default {
-  props: ['contacts'],
+  props: ["contacts"],
   data() {
     return {
       query: null
@@ -55,9 +55,20 @@ export default {
   },
   methods: {
     nice_date(date_to_improve) {
-      const monthNames = ["January", "February", "March", "April", "May", "June",
-        "July", "August", "September", "October", "November", "December"
-      ];
+      const monthNames = [
+        "January",
+        "February",
+        "March",
+        "April",
+        "May",
+        "June",
+        "July",
+        "August",
+        "September",
+        "October",
+        "November",
+        "December"
+      ]
       const date = new Date(date_to_improve)
       const monthName = monthNames[date.getMonth()]
       return `${monthName} ${date.getDay()}, ${date.getFullYear()}`
@@ -67,9 +78,9 @@ export default {
 </script>
 
 <style lang="scss">
-@import '~/assets/sass/helpers/_variables.scss';
-@import '~/assets/sass/helpers/_mixins.scss';
-@import '~/assets/sass/helpers/_extensions.scss';
+@import "~/assets/sass/helpers/_variables.scss";
+@import "~/assets/sass/helpers/_mixins.scss";
+@import "~/assets/sass/helpers/_extensions.scss";
 
 .contact-manager {
   .top-contact-manager {

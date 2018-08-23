@@ -7,7 +7,11 @@ from django.db import models
 
 
 class Address(models.Model):
-    title = models.CharField(max_length=100, default='')
+    """This class represents the Address Model."""
+    title = models.CharField(
+        max_length=100,
+        default=''
+    )
     owner = models.ForeignKey(
         'auth.User',
         on_delete=models.CASCADE,
@@ -22,7 +26,11 @@ class Address(models.Model):
 
 
 class PhoneNumber(models.Model):
-    number = models.CharField(max_length=100, default='')
+    """This class represents the Phone Model."""
+    number = models.CharField(
+        max_length=100,
+        default=''
+    )
     owner = models.ForeignKey(
         'auth.User',
         related_name='phones',
@@ -38,7 +46,11 @@ class PhoneNumber(models.Model):
 
 
 class Email(models.Model):
-    address = models.CharField(max_length=100, default='')
+    """This class represents the Email Model."""
+    address = models.CharField(
+        max_length=100,
+        default=''
+    )
     owner = models.ForeignKey(
         'auth.User',
         related_name='emails',
@@ -71,10 +83,22 @@ class Contact(models.Model):
         max_length=255,
         default=''
     )
-    date_of_birth = models.DateTimeField(blank=False, default=timezone.now)
-    addresses = models.ManyToManyField(Address, blank=True)
-    phone_numbers = models.ManyToManyField(PhoneNumber, blank=True)
-    emails = models.ManyToManyField(Email, blank=True)
+    date_of_birth = models.DateTimeField(
+        blank=False,
+        default=timezone.now
+    )
+    addresses = models.ManyToManyField(
+        Address,
+        blank=True
+    )
+    phone_numbers = models.ManyToManyField(
+        PhoneNumber,
+        blank=True
+    )
+    emails = models.ManyToManyField(
+        Email,
+        blank=True
+    )
     avatar = models.CharField(
         null=True,
         max_length=255,
@@ -85,7 +109,9 @@ class Contact(models.Model):
         max_length=255,
         default=''
     )
-    created_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(
+        default=timezone.now
+    )
 
     def __str__(self):
         """Readable format for the Model Instance."""

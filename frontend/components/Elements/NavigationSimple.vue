@@ -11,30 +11,30 @@
 
 <script>
 export default {
-  props: ['items']
+  props: ["items"]
 }
 </script>
 
 <style lang="scss">
-  @import '~/assets/sass/helpers/_variables.scss';
+@import "~/assets/sass/helpers/_variables.scss";
 
-  .navigation-simple {
-    display: flex;
-    button {
-      flex: 1;
-      border: none;
-      padding: 0;
-      font-size: 14px;
-      background: none;
-      cursor: pointer;
-      font-family: $gotham-rounded-medium;
-      color: $color-font-gray-dark;
-      &:hover {
-        color: $color-red;
-      }
-    }
-    .active {
+.navigation-simple {
+  display: flex;
+  button {
+    flex: 1;
+    border: none;
+    padding: 0;
+    font-size: 14px;
+    background: none;
+    cursor: pointer;
+    font-family: $gotham-rounded-medium;
+    color: $color-font-gray-dark;
+    &:hover {
       color: $color-red;
     }
   }
+  .active {
+    color: $color-red;
+  }
+}
 </style>
