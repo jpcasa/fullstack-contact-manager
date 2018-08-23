@@ -156,6 +156,7 @@ export default {
       height: 45px;
       border: none;
       cursor: pointer;
+      font-size: 14px;
       font-family: $gotham-rounded-medium;
       @include border-radius($border-radius);
       &:hover {

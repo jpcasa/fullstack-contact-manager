@@ -1,3 +1,4 @@
+from rest_framework.authtoken.models import Token
 from django.contrib.auth.models import User
 from rest_framework.test import APIClient
 from rest_framework import status
@@ -74,170 +75,43 @@ class ModelsTestCase(TestCase):
         self.assertEqual(new_contact.first_name, self.first_name)
 
 
-class ViewTestCase(TestCase):
-    """Test Class for api views."""
-
-    def setUp(self):
-        """Define the test client."""
-        self.user = User.objects.create(username="jpcasa")
-
-        self.client = APIClient()
-        self.client.force_authenticate(user=self.user)
-
-        self.contact_data = {'first_name': 'Juan', 'last_name': 'Casabianca'}
-        self.response = self.client.post(
-            reverse('create'),
-            self.contact_data,
-            format='json',
-        )
-
-        self.response_address = self.client.post(
-            reverse('addresses'),
-            {'title': 'Times Square, NY'},
-            format='json',
-        )
-
-        self.response_phone = self.client.post(
-            reverse('phones'),
-            {'number': '3507015800'},
-            format='json',
-        )
-
-        self.response_email = self.client.post(
-            reverse('emails'),
-            {'address': 'hello@email.com'},
-            format='json',
-        )
+    def test_model_can_update_user(self):
+        """Test that a contact updates successfully"""
+        new_first_name = "Alfredo"
+        self.contact.save()
+        self.assertNotEqual(new_first_name, self.contact.first_name)
+        self.contact.first_name = new_first_name
+        self.contact.save()
+        self.assertEqual(new_first_name, self.contact.first_name)
 
 
-    def test_authorization_enforced(self):
-        """Test API for User Auth"""
-        new_client = APIClient()
-        response = new_client.get('/contacts/', kwargs={'pk': 1}, format="json")
-        self.assertEqual(response.status_code, status.HTTP_401_UNAUTHORIZED)
+    def test_model_can_update_address(self):
+        """Test that an address updates successfully"""
+        new_address = "Times Square"
+        self.address.save()
+        self.assertNotEqual(new_address, self.address.title)
+        self.address.title = new_address
+        self.address.save()
+        self.assertEqual(new_address, self.address.title)
 
 
-    def test_api_can_create_contact(self):
-        """Test API for contact creation."""
-        self.assertEqual(self.response.status_code, status.HTTP_201_CREATED)
+
+    def test_model_can_update_email(self):
+        """Test that an email updates successfully"""
+        new_address = "hi@email.com"
+        self.email.save()
+        self.assertNotEqual(new_address, self.email.address)
+        self.email.address = new_address
+        self.email.save()
+        self.assertEqual(new_address, self.email.address)
 
 
-    def test_api_can_crud_address(self):
-        """Test CRUD functionality for Address Model."""
-        # Tests Creation
-        self.assertEqual(
-            self.response_address.status_code,
-            status.HTTP_201_CREATED
-        )
 
-        # Tests Update
-        address = models.Address.objects.get()
-        new_address = 'Liberty Square'
-        response = self.client.put(
-            reverse('address_detail', kwargs={'pk': address.id}),
-            {'title': new_address},
-            format='json',
-        )
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertContains(response, new_address)
-
-        # Test Delete
-        response = self.client.delete(
-            reverse('address_detail', kwargs={'pk': address.id}),
-            format='json',
-            follow=True
-        )
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-
-
-    def test_api_can_crud_phones(self):
-        """Test CRUD functionality for Phone Model."""
-        # Tests Creation
-        self.assertEqual(
-            self.response_phone.status_code,
-            status.HTTP_201_CREATED
-        )
-
-        # Tests Update
-        phone = models.PhoneNumber.objects.get()
-        new_phone = '+(1)888-986-587452'
-        response = self.client.put(
-            reverse('phone_detail', kwargs={'pk': phone.id}),
-            {'number': new_phone},
-            format='json',
-        )
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertContains(response, new_phone)
-
-        # Test Delete
-        response = self.client.delete(
-            reverse('phone_detail', kwargs={'pk': phone.id}),
-            format='json',
-            follow=True
-        )
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-
-
-    def test_api_can_crud_emails(self):
-        """Test CRUD functionality for Email Model."""
-        # Tests Creation
-        self.assertEqual(
-            self.response_email.status_code,
-            status.HTTP_201_CREATED
-        )
-
-        # Tests Update
-        email = models.Email.objects.get()
-        new_email = 'hello@othermail.com'
-        response = self.client.put(
-            reverse('email_detail', kwargs={'pk': email.id}),
-            {'address': new_email},
-            format='json',
-        )
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertContains(response, new_email)
-
-        # Test Delete
-        response = self.client.delete(
-            reverse('email_detail', kwargs={'pk': email.id}),
-            format='json',
-            follow=True
-        )
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
-
-
-    def test_api_can_get_contact(self):
-        """Test API to get a contact"""
-        contact = models.Contact.objects.get(id=1)
-        response = self.client.get(
-            '/contacts/',
-            kwargs={'pk': contact.id},
-            format='json',
-        )
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertContains(response, contact.first_name)
-
-
-    def test_api_can_update_contact(self):
-        """Test API to update a contact"""
-        contact = models.Contact.objects.get()
-        new_name = 'Rafael'
-        change_contact = {'first_name': new_name, 'last_name': 'Gomez'}
-        response = self.client.put(
-            reverse('details', kwargs={'pk': contact.id}),
-            change_contact,
-            format='json',
-        )
-        self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertContains(response, new_name)
-
-
-    def test_api_can_delete_contact(self):
-        """Test API to delete a contact"""
-        contact = models.Contact.objects.get()
-        response = self.client.delete(
-            reverse('details', kwargs={'pk': contact.id}),
-            format='json',
-            follow=True
-        )
-        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+    def test_model_can_update_phone(self):
+        """Test that a phone updates successfully"""
+        new_phone = "Alfredo"
+        self.phone.save()
+        self.assertNotEqual(new_phone, self.phone.number)
+        self.phone.number = new_phone
+        self.phone.save()
+        self.assertEqual(new_phone, self.phone.number)
