@@ -10,13 +10,10 @@
       </div>
     </div>
     <section id="contacts-container">
-
       <!-- Compacted Version -->
       <ShortContact class="mobile" :contacts="contact_list" />
-
       <!-- Full Contact Version -->
       <FullContact class="desktop" :contacts="contact_list" />
-
     </section>
   </div>
 </template>
